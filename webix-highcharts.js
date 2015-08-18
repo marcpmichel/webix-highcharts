@@ -51,6 +51,7 @@ webix.protoUI({ name:"highcharts",
         if(this._autoreset) {
             this.attachEvent("onBeforeLoad", webix.bind(this.reset, this) );
         }
+        if(this.config.data) { this.parse(this.config.data);  }
     },
 
     $setSize: function() {

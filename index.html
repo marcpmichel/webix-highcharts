@@ -13,6 +13,11 @@
 <body>
   <script type="text/javascript" charset="utf-8">
 
+    var series = [
+      { name:'serie 1', data:[ 5,2,4,6,2,4,5,10] },
+      { name:'serie 2', data:[ 4,8,7,5,2,3,2,6], color:'olive' }
+    ];
+
 
     function start() {
       webix.ui({ view:'layout', rows:[ 
@@ -20,24 +25,17 @@
         { view:'layout', type:'space', cols:[
           { view:'highcharts', id:'chart', 
             title: 'Chart',
-            chart: { type:'column'}
+            chart: { type:'column'},
+            data: series
           },
           {}
         ]},
         {}
       ] 
       });
-
-      var series = [
-        { name:'serie 1', data:[ 5,2,4,6,2,4,5,10] },
-        { name:'serie 2', data:[ 4,8,7,5,2,3,2,6], color:'olive' }
-      ]
-
-      $$('chart').parse(series);  
-
     };
 
-    webix.ready(function() { start(); });
+    webix.ready(start);
 
 
   </script>
