@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <title>Webix Highcharts</title>
+  <link rel="stylesheet" type="text/css" href="http://cdn.webix.com/site/webix.css">
+  <script type="text/javascript" charset="utf-8" src="highcharts_standalone.js"></script>
+  <script type="text/javascript" charset="utf-8" src="http://code.highcharts.com/highcharts.js"></script> 
+  <script type="text/javascript" src="http://cdn.webix.com/site/webix.js"></script>
+  <script type="text/javascript" src="webix-highcharts.js"></script>
+</head>
+<body>
+  <script type="text/javascript" charset="utf-8">
+
+
+    function start() {
+      webix.ui({ view:'layout', rows:[ 
+        { view:"toolbar", elements:[{ view:'label', label:'hello highcharts' }] },
+        { view:'layout', type:'space', cols:[
+          { view:'highcharts', id:'chart', 
+            title: 'Chart',
+            chart: { type:'column'}
+          },
+          {}
+        ]},
+        {}
+      ] 
+      });
+
+      var series = [
+        { name:'serie 1', data:[ 5,2,4,6,2,4,5,10] },
+        { name:'serie 2', data:[ 4,8,7,5,2,3,2,6], color:'olive' }
+      ]
+
+      $$('chart').parse(series);  
+
+    };
+
+    webix.ready(function() { start(); });
+
+
+  </script>
+</body>
+</html>
