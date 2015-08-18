@@ -44,6 +44,7 @@ webix.protoUI({ name:"highcharts",
         if(this._autoreset) {
             this.attachEvent("onBeforeLoad", webix.bind(this.reset, this) );
         }
+        this.attachEvent('onViewShow', webix.bind(function() { this.chart && this.chart.reflow(); }, this)); // for multiviews
         if(this.config.data) { this.parse(this.config.data);  }
     },
 
