@@ -13,30 +13,48 @@
 <body>
   <script type="text/javascript" charset="utf-8">
 
-    var series = [
-      { name:'serie 1', data:[ 5,2,4,6,2,4,5,10] },
-      { name:'serie 2', data:[ 4,8,7,5,2,3,2,6], color:'olive' }
+    var series = [];
+    series[0] = [
+      { name:'series 1', data:[ 5,2,4,6,2,4,5,10] },
+      { name:'series 2', data:[ 4,8,7,5,2,3,2,6], color:'olive' }
     ];
+    series[1] = [
+      { name:'series 1', data:[ 7,8,5,2,4,1,5,6] },
+      { name:'series 2', data:[ 4,2,3,6,1,6,5,5], color:'turquoise' }
+    ];
+    var s = 0;
 
 
     function start() {
       webix.ui({ view:'layout', rows:[ 
-        { view:"toolbar", elements:[{ view:'label', label:'hello highcharts' }] },
-        { view:'layout', type:'space', cols:[
-          { view:'highcharts', id:'chart', 
-            title: 'Chart',
-            chart: { type:'column'},
-            data: series
-          },
+        { view:"toolbar", elements:[
+          { view:'label', label:'hello highcharts' }, 
+          {id:'button', view:'button', value:'load new series' }, 
           {}
         ]},
-        {}
+        { view:'layout', type:'space', cols:[
+          { view:'template', template:'left', width:200 },
+          {view:'resizer' },
+          { view:'highcharts', id:'chart', 
+            chart: { type:'column', title: { text:'Hello' }},
+            data: series[0]
+          },
+          { view:'resizer' },
+          { view:'template', template:'right'}
+        ]},
+        {view:'resizer'},
+        {view:'template', template:'below' }
       ] 
       });
+
+      $$('button').attachEvent('onItemClick', function() {
+        s = (s + 1) % 2;
+        $$('chart').parse(series[s]);
+      });
+
     };
 
     webix.ready(start);
-
 
   </script>
 </body>
